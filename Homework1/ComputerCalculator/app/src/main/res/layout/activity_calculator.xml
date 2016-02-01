@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.hw1.preeti.computercalculator.Calculator">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:id="@+id/mainLin"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:id="@+id/linearLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/budget"
+            android:id="@+id/budget"
+            android:layout_weight="0.05" />
+
+
+        <EditText
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/value"
+            android:layout_alignTop="@+id/linearLayout"
+            android:text="@string/value"
+            android:hint="@string/value_hint"
+            android:digits="0123456789"/>
+
+
+    </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/memory"
+                android:id="@+id/memory" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:id="@+id/radioGroupMemory">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/twoGb"
+                    android:id="@+id/radioButton2Gb"
+                    android:layout_weight="0.16"
+                    android:checked="true"
+                    android:textSize="10sp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fourGb"
+                    android:id="@+id/radioButton4Gb"
+                    android:layout_weight="0.17"
+                    android:textSize="10sp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sixteenGb"
+                    android:id="@+id/radioButton16Gb"
+                    android:textSize="10sp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/eightGb"
+                    android:id="@+id/radioButton8Gb"
+                    android:textSize="10sp"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/storage"
+                android:id="@+id/storage" />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioGroupStorage">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/two50Gb"
+                    android:id="@+id/radioButton250Gb"
+                    android:checked="true"
+                    android:textSize="10sp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/five00Gb"
+                    android:id="@+id/radioButton500Gb"
+                    android:textSize="10sp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/seven50Gb"
+                    android:id="@+id/radioButton750Gb"
+                    android:textSize="10sp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/oneTb"
+                    android:id="@+id/radioButton1Tb"
+                    android:textSize="10sp"/>
+            </RadioGroup>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="99dp"
+                android:layout_height="wrap_content"
+                android:text="@string/accessories"
+                android:id="@+id/accessories" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="124dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/checkBoxMouse"
+                    android:id="@+id/checkBoxMouse"
+                    />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/checkBoxCoolingPad"
+                    android:id="@+id/checkBoxCoolingPad"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/checkBoxFlashD"
+                    android:id="@+id/checkBoxFlashDrive"
+                     />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/checkBoxCarryingCase"
+                    android:id="@+id/checkBoxCarryingCase" />
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            >
+
+        </View>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tip"
+                android:id="@+id/tip" />
+
+            <SeekBar
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/seekBar2"
+                android:layout_weight="0.67"
+                android:progress="15"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tipIndicator"
+                android:id="@+id/tipIndicator" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            >
+        </View>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:weightSum="1">
+
+            <Switch
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/delivery"
+                android:id="@+id/switch1Delivery"
+                android:layout_weight="0.39"
+                android:checked="true" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            >
+        </View>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/calculate"
+                android:id="@+id/calculate"
+                android:layout_weight="1.07" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="186dp"
+                android:layout_height="wrap_content"
+                android:text="@string/reset"
+                android:id="@+id/reset" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/price"
+                android:id="@+id/price"
+                android:layout_weight="0.18"
+                android:gravity="center"
+                android:textAlignment="viewEnd"
+                android:textSize="40sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/priceFinalValue"
+                android:id="@+id/finalPriceValue"
+                android:textSize="40sp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status"
+                android:id="@+id/status"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/budgetIndicator"
+                android:id="@+id/budgetIndicator"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:background="@drawable/rounded_corners_green" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
