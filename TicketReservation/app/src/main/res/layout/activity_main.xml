@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.group26.ticketreservation.MainActivity">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:weightSum="1">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/createTicketButton"
+            android:id="@+id/createTicketButton"
+            android:layout_gravity="center_horizontal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/editTicketButton"
+            android:id="@+id/editTicketButton"
+            android:layout_gravity="center_horizontal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/deleteTicketButton"
+            android:id="@+id/deleteTicketButton"
+            android:layout_gravity="center_horizontal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/viewTicketButton"
+            android:id="@+id/viewTicketButton"
+            android:layout_gravity="center_horizontal" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/finishButton"
+            android:id="@+id/finishButton"
+            android:layout_gravity="center_horizontal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/customerCareCallLogo"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_margin="9dp"
+                android:src="@mipmap/customercarecall"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/customerCareNumber"
+                android:id="@+id/customerCareNumber"
+                android:textColor="@color/blue"
+                android:textSize="20sp"
+                android:paddingTop="@dimen/top" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
