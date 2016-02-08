@@ -16,6 +16,13 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Select_Ticket_Button"
+            android:id="@+id/edit_text_selectbutton"
+            android:layout_gravity="center_horizontal" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,6 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/oneWayRadioButton"
+                android:checked="true"
                 android:id="@+id/oneWayRadioButton"
                 android:textSize="24dp"/>
 
@@ -70,8 +78,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/roundTripRadioButton"
-                android:id="@+id/radioButton2"
-                android:textSize="24dp"/>
+                android:id="@+id/roundTripButton"
+                android:textSize="24dp"
+                android:checked="false" />
         </RadioGroup>
 
         <View
@@ -94,7 +103,7 @@
             <EditText
                 android:layout_width="113dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/depTimeEditText"
+                android:id="@+id/departureTimeEditText"
                 android:hint="@string/depTimeEditText" />
         </LinearLayout>
 
@@ -107,37 +116,39 @@
             <EditText
                 android:layout_width="238dp"
                 android:layout_height="wrap_content"
+                android:visibility="invisible"
                 android:id="@+id/returnDateEditText"
                 android:hint="@string/returnDateEditText" />
 
             <EditText
                 android:layout_width="wrap_content"
+                android:visibility="invisible"
                 android:layout_height="wrap_content"
-                android:id="@+id/returnTime"
-                android:layout_weight="1"
+                android:id="@+id/returnTimeEditText"
                 android:hint="@string/returnTime" />
         </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dip"
-            />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dip"
-            />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dip"
-            />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/printSummaryButton"
-            android:id="@+id/printSummaryButton"
-            android:layout_gravity="center_horizontal"
-            android:textSize="24dp"/>
+            android:text="@string/editTextSaveButton"
+            android:id="@+id/editTextSaveButton"
+            android:textSize="20dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dip"
+            />
 
     </LinearLayout>
 

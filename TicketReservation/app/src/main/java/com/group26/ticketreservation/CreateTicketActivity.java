@@ -311,22 +311,24 @@ public class CreateTicketActivity extends AppCompatActivity {
                 ticket t;
                 if(roundTripButton.isChecked()){
                     t = new ticket(nameEditText.getText().toString(), sourceEditText.getText().toString(), destinationEditText.getText().toString(), departureDate.getText().toString(),
-                            departureTime.getText().toString(),  returnDate.getText().toString(), returnTime.getText().toString());
+                            departureTime.getText().toString(), oneWayRadioButton.isChecked(), returnDate.getText().toString(), returnTime.getText().toString());
                 }
                 else {
                     t = new ticket(nameEditText.getText().toString(), sourceEditText.getText().toString(), destinationEditText.getText().toString(), departureDate.getText().toString(),
-                            departureTime.getText().toString());
+                            departureTime.getText().toString(), oneWayRadioButton.isChecked());
                 }
 
                 // Pass ticket object back to main activity - the main activity should then add "this" ticket back to the linked list
-                Intent resultIntent = new Intent();
-                resultIntent.putExtra("TICKET", t);
+                Intent resultIntent = getIntent();
+                resultIntent.putExtra(MainActivity.TICKET, t);
                 setResult(Activity.RESULT_OK, resultIntent);
 
                 // Pass ticket object to print ticket activity so that we populate ticket data and display it
                 Intent printActivityIntent = new Intent(CreateTicketActivity.this, PrintTicketActivity.class);
-                printActivityIntent.putExtra("TICKET", t);
+                printActivityIntent.putExtra(MainActivity.TICKET, t);
                 startActivity(printActivityIntent);
+
+                finish();
 
             }
         });

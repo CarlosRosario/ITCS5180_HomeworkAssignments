@@ -34,5 +34,10 @@
     <string name="departure_field">Departure: </string>
     <string name="return_field">Return: </string>
     <string name="button_finish">Finish</string>
+    <string name="Select_Ticket_Button">Select Ticket</string>
+    <string name="editTextSaveButton">Save</string>
+    <string name="delete_activity_delete">Delete</string>
+    <string name="delete_activity_cancel">Cancel</string>
+    <string name="view_ticket_finish">Finish</string>
 
 </resources>

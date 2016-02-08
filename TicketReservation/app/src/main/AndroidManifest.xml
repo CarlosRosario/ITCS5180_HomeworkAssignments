@@ -6,11 +6,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/airplane_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,8 +27,10 @@
         <activity
             android:name=".DeleteTicketActivity"
             android:label="@string/delete_ticket_title" />
-        <activity android:name=".ViewTicketActivity" />
-        <activity android:name=".PrintTicketActivity"></activity>
+        <activity android:name=".ViewTicketActivity"
+            android:label="View Ticket"/>
+        <activity android:name=".PrintTicketActivity"
+            android:label="Print Ticket"></activity>
     </application>
 
 </manifest>

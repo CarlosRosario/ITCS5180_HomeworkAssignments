@@ -15,7 +15,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:weightSum="1">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Select_Ticket_Button"
+            android:id="@+id/edit_text_selectbutton"
+            android:layout_gravity="center_horizontal" />
 
         <EditText
             android:layout_width="match_parent"
@@ -24,7 +32,8 @@
             android:text="@string/nameEditText"
             android:hint="@string/nameEditTextHint"
             android:maxLength="20"
-            android:textSize="24dp"/>
+            android:textSize="24dp"
+            android:enabled="false"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -32,7 +41,8 @@
             android:id="@+id/sourceEditText"
             android:layout_gravity="center_horizontal"
             android:hint="@string/sourceEditTextHint"
-            android:textSize="24dp"/>
+            android:textSize="24dp"
+            android:enabled="false"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -40,7 +50,8 @@
             android:id="@+id/destinationEditText"
             android:layout_gravity="center_horizontal"
             android:hint="@string/destinationEditTextHint"
-            android:textSize="24dp"/>
+            android:textSize="24dp"
+            android:enabled="false"/>
 
         <View
             android:layout_width="match_parent"
@@ -64,15 +75,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/oneWayRadioButton"
+                android:checked="true"
                 android:id="@+id/oneWayRadioButton"
-                android:textSize="24dp"/>
+                android:textSize="24dp"
+                android:enabled="false"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/roundTripRadioButton"
-                android:id="@+id/radioButton2"
-                android:textSize="24dp"/>
+                android:id="@+id/roundTripButton"
+                android:textSize="24dp"
+                android:enabled="false"/>
         </RadioGroup>
 
         <View
@@ -90,13 +104,15 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/departureDateEditText"
                 android:layout_weight="1"
-                android:hint="@string/departureDateEditText" />
+                android:hint="@string/departureDateEditText"
+                android:enabled="false"/>
 
             <EditText
                 android:layout_width="113dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/depTimeEditText"
-                android:hint="@string/depTimeEditText" />
+                android:id="@+id/departureTimeEditText"
+                android:hint="@string/depTimeEditText"
+                android:enabled="false"/>
         </LinearLayout>
 
         <LinearLayout
@@ -108,37 +124,39 @@
             <EditText
                 android:layout_width="238dp"
                 android:layout_height="wrap_content"
+                android:enabled="false"
                 android:id="@+id/returnDateEditText"
                 android:hint="@string/returnDateEditText" />
 
             <EditText
                 android:layout_width="wrap_content"
+                android:enabled="false"
                 android:layout_height="wrap_content"
-                android:id="@+id/returnTime"
-                android:layout_weight="1"
+                android:id="@+id/returnTimeEditText"
                 android:hint="@string/returnTime" />
         </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dip"
-            />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dip"
-            />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dip"
-            />
-
-        <Button
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/printSummaryButton"
-            android:id="@+id/printSummaryButton"
             android:layout_gravity="center_horizontal"
-            android:textSize="24dp"/>
+            android:weightSum="1">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_activity_delete"
+                android:id="@+id/deleteButton"
+                android:layout_weight="0.50" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_activity_cancel"
+                android:id="@+id/cancelButton"
+                android:layout_weight="0.50" />
+        </LinearLayout>
 
     </LinearLayout>
 

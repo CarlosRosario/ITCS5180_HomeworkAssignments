@@ -10,27 +10,47 @@ public class ticket implements Serializable {
     String name;
     String source;
     String destination;
-    String depature_date;
+    String departure_date;
     String departure_time;
     String return_date;
-    String return_time = null;
 
-    public ticket(String name, String source, String destination, String departure_date, String departure_time,  String return_date, String return_time) {
+    public boolean isTripIsOneWay() {
+        return tripIsOneWay;
+    }
+
+    public void setTripIsOneWay(boolean tripIsOneWay) {
+        this.tripIsOneWay = tripIsOneWay;
+    }
+
+    public String getDeparture_date() {
+        return departure_date;
+    }
+
+    public void setDeparture_date(String departure_date) {
+        this.departure_date = departure_date;
+    }
+
+    String return_time = null;
+    boolean tripIsOneWay = true;
+
+    public ticket(String name, String source, String destination, String departure_date, String departure_time,  boolean tripIsOneWay,  String return_date, String return_time) {
         this.name = name;
         this.source = source;
         this.destination = destination;
-        this.depature_date = departure_date;
+        this.departure_date = departure_date;
         this.departure_time = departure_time;
+        this.tripIsOneWay = tripIsOneWay;
         this.return_date = return_date;
         this.return_time = return_time;
     }
 
-    public ticket(String name, String source, String destination, String departure_date, String departure_time) {
+    public ticket(String name, String source, String destination, String departure_date, String departure_time, boolean tripIsOneWay) {
         this.name = name;
         this.source = source;
         this.destination = destination;
-        this.depature_date = departure_date;
+        this.departure_date = departure_date;
         this.departure_time = departure_time;
+        this.tripIsOneWay = tripIsOneWay;
         this.return_date = "";
         this.return_time = "";
     }
@@ -41,7 +61,7 @@ public class ticket implements Serializable {
                 "name='" + name + '\'' +
                 ", source='" + source + '\'' +
                 ", destination='" + destination + '\'' +
-                ", depature_date='" + depature_date + '\'' +
+                ", departure_date='" + departure_date + '\'' +
                 ", departure_time='" + departure_time + '\'' +
                 ", return_date='" + return_date + '\'' +
                 ", return_time='" + return_time + '\'' +
@@ -70,14 +90,6 @@ public class ticket implements Serializable {
 
     public void setDestination(String destination) {
         this.destination = destination;
-    }
-
-    public String getDepature_date() {
-        return depature_date;
-    }
-
-    public void setDepature_date(String depature_date) {
-        this.depature_date = depature_date;
     }
 
     public String getDeparture_time() {
