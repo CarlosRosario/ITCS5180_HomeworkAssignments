@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">GeekQuiz</string>
+    <string name="splash_name">Splash</string>
+    <string name="welcome_name">Welcome</string>
+    <string name="quiz_name">Quiz</string>
+    <string name="splash_start_quiz_button">Start Quiz</string>
+    <string name="how_geeky">How Geeky Are You?</string>
+    <string name="Welcome_ExitButton">Exit</string>
+    <string name="Welcome_StartQuiz">Start Quiz</string>
+    <string name="Welcome_LoadingQuestions">Loading Questions</string>
+    <string name="Quit_QuitButton">Quit</string>
+    <string name="Quiz_NextButton">Next</string>
+</resources>
