@@ -1,9 +1,11 @@
 package com.example.group26.geekquiz;
 
+import java.io.Serializable;
+
 /**
  * Created by Carlos on 2/20/2016.
  */
-public class AnswerScorePair {
+public class AnswerScorePair implements Serializable {
 
     public String answer;
     public int score;

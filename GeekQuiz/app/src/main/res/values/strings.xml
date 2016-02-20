@@ -10,4 +10,5 @@
     <string name="Welcome_LoadingQuestions">Loading Questions</string>
     <string name="Quit_QuitButton">Quit</string>
     <string name="Quiz_NextButton">Next</string>
+    <string name="Quiz_QuestionNumber">Q</string>
 </resources>

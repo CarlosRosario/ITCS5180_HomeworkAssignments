@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Ticket Reservation</string>
+    <string name="create_ticket_title">Create Ticket</string>
+    <string name="edit_ticket_title">Edit Ticket</string>
+    <string name="view_ticket_title">View Ticket</string>
+    <string name="delete_ticket_title">Delete Ticket</string>
+    <string name="print_ticket_title">Print Ticket</string>
+    <string name="createTicketButton">Create Ticket</string>
+    <string name="editTicketButton">Edit Ticket</string>
+    <string name="deleteTicketButton">Delete Ticket</string>
+    <string name="viewTicketButton">View Ticket</string>
+    <string name="finishButton">Finish</string>
+    <string name="customerCareCall">customerCareCall</string>
+    <!--<string name="customerCareNumber"><u> <font color="#009acd">Customer Care: 999-999-9999</font></u></string>-->
+    <string name="customerCareNumber"><u>Customer Care: 999-999-9999</u></string>
+    <string name="nameEditText"></string>
+    <string name="nameEditTextHint">Name</string>
+    <string name="sourceEditTextHint">Source</string>
+    <string name="destinationEditTextHint">Destination</string>
+    <string name="tripTextView">Trip:</string>
+    <string name="oneWayRadioButton">One-way</string>
+    <string name="roundTripRadioButton">Round-Trip</string>
+    <string name="printSummaryButton">Print Summary</string>
+    <string name="departureDateEditText">Departure Date</string>
+    <string name="depTimeEditText">Time</string>
+    <string name="returnDateEditText">Return Date</string>
+    <string name="returnTime">Time</string>
+    <color name="blue">#009acd</color>
+    <string name="title_activity_print_ticket">Print Ticket</string>
+    <string name="itinerary">ITINERARY</string>
+    <string name="name_field">Name: </string>
+    <string name="source_field">Source: </string>
+    <string name="destination_field">Destination: </string>
+    <string name="departure_field">Departure: </string>
+    <string name="return_field">Return: </string>
+    <string name="button_finish">Finish</string>
+    <string name="Select_Ticket_Button">Select Ticket</string>
+    <string name="editTextSaveButton">Save</string>
+    <string name="delete_activity_delete">Delete</string>
+    <string name="delete_activity_cancel">Cancel</string>
+    <string name="view_ticket_finish">Finish</string>
+
+</resources>
