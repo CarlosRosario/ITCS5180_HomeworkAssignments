@@ -11,4 +11,24 @@
     <string name="Quit_QuitButton">Quit</string>
     <string name="Quiz_NextButton">Next</string>
     <string name="Quiz_QuestionNumber">Q</string>
+    <string name="non_geek">Non-Geek</string>
+    <string name="non_geek_description">There isn\'t a single geeky bone in your body. You prefer to
+        party rather than study, and have someone else fix your computer, if
+        need be. You\'re just too cool for this. You probably don\'t even wear glasses!</string>
+    <string name="semi_geek">Semi-Geek</string>
+    <string name="semi_geek_description">Maybe you\'re just influenced by the trend, or maybe you
+        just got it all perfectly balanced. You have some geeky traits, but they aren\'t as
+        "hardcore" and they don\'t take over your life. You like some geeky things, but aren\'t
+        nearly as obsessive about them as the uber-geeks. You actually get to enjoy both
+        worlds</string>
+    <string name="uber_geek">Uber-Geek</string>
+    <string name="uber_geek_description">You are the geek supreme! You are likely to be interested
+        in technology, science, gaming and geeky media such as Sci-Fi and fantasy. All the mean kids
+        that used to laugh at you in high school are now begging you for a job. Be proud of your
+        geeky nature, for geeks shall inherit the Earth!</string>
+    <string name="quiz_result">Quiz Result:</string>
+    <string name="result_edittext">RESULT</string>
+    <string name="button_tryagain">Try Again</string>
+    <string name="button_quit">Quit</string>
+    <string name="title_activity_results">ResultsActivity</string>
 </resources>

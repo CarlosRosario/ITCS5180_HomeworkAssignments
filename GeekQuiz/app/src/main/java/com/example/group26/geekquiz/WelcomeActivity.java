@@ -72,7 +72,7 @@ public class WelcomeActivity extends AppCompatActivity implements GetQuestionDat
                 }
                 quizActivityIntent.putExtra(QUESTION_DATA, questionArray);
                 startActivity(quizActivityIntent);
-                //finish();
+                finish();
             }
         });
 

@@ -3,6 +3,7 @@ package com.example.group26.geekquiz;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import java.io.IOException;
@@ -30,7 +31,6 @@ public class GetImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
     protected void onPostExecute(Bitmap bitmap) {
         super.onPostExecute(bitmap);
         activity.finishProcessing();
-
         activity.setImage(bitmap);
     }
 
@@ -38,12 +38,14 @@ public class GetImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
     protected Bitmap doInBackground(String... params) {
 
         try {
+            Log.d("demo4", params[0]);
             URL url = new URL(params[0]);
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
             connection.setRequestMethod("GET");
             Bitmap image = BitmapFactory.decodeStream(connection.getInputStream()); // use this code to return an image
             return image;
         } catch (IOException e) {
+
             e.printStackTrace();
         }
 
