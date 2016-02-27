@@ -1,0 +1,5 @@
+<resources>
+    <string name="main_app_name">IMDb Movie App</string>
+    <string name="search_movies_name">Search Movies</string>
+    <string name="main_activity_search_button">Search IMDb.com</string>
+</resources>
