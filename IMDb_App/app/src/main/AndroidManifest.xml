@@ -22,7 +22,10 @@
         <activity
             android:name=".SearchMovieActivity"
             android:label="@string/search_movies_name" />
-        <activity android:name=".MovieDetailsActivity"></activity>
+        <activity
+            android:name=".MovieDetailsActivity"
+            android:label="@string/movie_details_name" />
+        <activity android:name=".MovieWebView" android:label="@string/movie_web_name"></activity>
     </application>
 
 </manifest>
