@@ -4,7 +4,9 @@ import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebView;
+import android.widget.TextView;
 
 public class MovieWebView extends AppCompatActivity {
 
@@ -63,7 +65,14 @@ public class MovieWebView extends AppCompatActivity {
 
             if(webView.getProgress() == 100){
                 finishProcessing();
+
+                TextView urlTextView = (TextView)findViewById(R.id.urlTextView);
+                urlTextView.setText(webView.getUrl());
+                urlTextView.setVisibility(View.VISIBLE);
             }
+
+
+
         }
 
         @Override
