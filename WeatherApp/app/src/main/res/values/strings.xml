@@ -1,0 +1,12 @@
+<resources>
+    <!-- Activity Action Bar Titles -->
+    <string name="app_name">WeatherApp</string>
+    <string name="add_city_name">Add City</string>
+    <!-- Misc -->
+    <string name="no_cities_message">There are no cities to display. Add using the \"+\" button from the menu</string>
+    <string name="city_hint">City Name (Eg. Charlotte)</string>
+    <string name="state_hint">State Initial (Eg. NC)</string>
+    <string name="save_city_button_text">Save City</string>
+
+
+</resources>
