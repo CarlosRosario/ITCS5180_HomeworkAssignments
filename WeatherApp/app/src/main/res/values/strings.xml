@@ -7,6 +7,13 @@
     <string name="city_hint">City Name (Eg. Charlotte)</string>
     <string name="state_hint">State Initial (Eg. NC)</string>
     <string name="save_city_button_text">Save City</string>
+    <string name="current_location">Current Location:</string>
+    <string name="feels_like_label">Feels Like:</string>
+    <string name="humidity_label">Humidity:</string>
+    <string name="dewpoint_label">Dewpoint:</string>
+    <string name="pressure_label">Pressure:</string>
+    <string name="winds_label">Winds:</string>
+    <string name="clouds_label">Clouds:</string>
 
 
 </resources>
