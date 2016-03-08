@@ -5,7 +5,8 @@ package com.example.group26.weatherapp;
  */
 public class Constants {
 
-    public static final int MAIN_ACTIVITY = 1;
+    public static final int ADDCITY_ACTIVITY = 1;
     public static final String CITY = "CITY";
+    public static final String LOCATION_API_ENDPOINT = "http://api.fullcontact.com/v2/address/locationNormalizer.json?";
 
 }
