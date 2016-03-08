@@ -59,7 +59,7 @@ public class ValidateCityStateAsyncTask extends AsyncTask<String, Void, Boolean>
                 String line = reader.readLine();
 
                 while(line != null){
-                    Log.d("testing", line);
+                    //Log.d("testing", line);
                     sb.append(line);
                     line = reader.readLine();
                 }

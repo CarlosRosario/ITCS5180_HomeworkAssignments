@@ -104,7 +104,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     public void hydrate(Weather weather){
         cityState.setText(city.getCityName().replace("_", " ") + ", " + city.getState().replace("_", " "));
-        weatherTime.setText(weather.getTime());
+        weatherTime.setText(weather.getTime() + " " + weather.getDay());
         Picasso.with(DetailsActivity.this).load(weather.getIconURL()).into(weatherImage);
         currentTemp.setText(weather.getTemperature() + Constants.DEGREES_UNICODE + "F");
         currentWeather.setText(weather.getClimateType());

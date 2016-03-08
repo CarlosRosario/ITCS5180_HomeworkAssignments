@@ -30,7 +30,7 @@ public class HourlyDataActivity extends AppCompatActivity implements GetHourlyDa
 
             if(city  != null){
                 String url = Constants.WUNDERGROUND_API_ENDPOINT + city.getState() + "/" + city.getCityName() + ".xml";
-                Log.d("url", url);
+                //Log.d("url", url);
                 new GetHourlyDataAsyncTask(HourlyDataActivity.this).execute(url);
             }
         }

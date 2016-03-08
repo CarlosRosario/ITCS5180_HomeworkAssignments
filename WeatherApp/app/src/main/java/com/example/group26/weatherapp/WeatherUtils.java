@@ -186,8 +186,8 @@ public class WeatherUtils {
             String maxTemp = deepCopyWeatherList.get(0).getTemperature();
             String minTemp = deepCopyWeatherList.get(deepCopyWeatherList.size() - 1).getTemperature();
 
-            Log.d("testing2", "Max Temp: " + maxTemp);
-            Log.d("testing2", "Min Temp: " + minTemp);
+            //Log.d("testing2", "Max Temp: " + maxTemp);
+            //Log.d("testing2", "Min Temp: " + minTemp);
 
             for(Weather w: weatherList){
                 w.setMaximumTemp(maxTemp);
