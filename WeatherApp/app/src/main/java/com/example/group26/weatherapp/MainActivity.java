@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                                             if(isListViewShowing){
                                                 // Remove ListView
                                                 layout.removeView(listView);
+                                                adapter = null;
 
                                                 // Re-add default textview
                                                 layout.addView(defaultTextView);

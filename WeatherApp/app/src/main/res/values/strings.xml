@@ -3,6 +3,7 @@
     <string name="app_name">WeatherApp</string>
     <string name="add_city_name">Add City</string>
     <string name="hourly_data">HourlyData Activity</string>
+    <string name="details_name">Details Activity</string>
     <!-- Misc -->
     <string name="no_cities_message">There are no cities to display. Add using the \"+\" button from the menu</string>
     <string name="city_hint">City Name (Eg. Charlotte)</string>

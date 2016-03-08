@@ -21,6 +21,7 @@
             android:name=".AddCityActivity"
             android:label="@string/add_city_name" />
         <activity android:name=".HourlyDataActivity" android:label="@string/hourly_data"></activity>
+        <activity android:name=".DetailsActivity" android:label="@string/details_name"></activity>
     </application>
 
 </manifest>

@@ -9,19 +9,35 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.group26.weatherapp.HourlyDataActivity">
 
-    <TextView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/hourly_header_textView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/headerLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/hourly_header_textView"
+            android:layout_marginRight="1dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/hourly_header_location_textView"
+            android:textStyle="bold"
+            android:layout_marginLeft="1dp"/>
+
+    </LinearLayout>
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/topStoryListView"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/hourly_header_textView"
+        android:layout_below="@+id/headerLayout"
         android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
