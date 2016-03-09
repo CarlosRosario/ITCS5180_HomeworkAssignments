@@ -80,8 +80,8 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 clickedPosition--;
-                if(clickedPosition < 0){
-                    clickedPosition = weatherList.size() -1;
+                if (clickedPosition < 0) {
+                    clickedPosition = weatherList.size() - 1;
                 }
 
                 weatherForChosenHour = weatherList.get(clickedPosition);
@@ -93,7 +93,7 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 clickedPosition++;
-                if(clickedPosition > weatherList.size() -1){
+                if (clickedPosition > weatherList.size() - 1) {
                     clickedPosition = 0;
                 }
                 weatherForChosenHour = weatherList.get(clickedPosition);
@@ -105,7 +105,11 @@ public class DetailsActivity extends AppCompatActivity {
     public void hydrate(Weather weather){
         cityState.setText(city.getCityName().replace("_", " ") + ", " + city.getState().replace("_", " "));
         weatherTime.setText(weather.getTime() + " " + weather.getDay());
-        Picasso.with(DetailsActivity.this).load(weather.getIconURL()).into(weatherImage);
+
+        if(!weather.getIconURL().isEmpty() && !weather.getIconURL().equals("null thumbUrl")){
+            Picasso.with(DetailsActivity.this).load(weather.getIconURL()).into(weatherImage);
+        }
+
         currentTemp.setText(weather.getTemperature() + Constants.DEGREES_UNICODE + "F");
         currentWeather.setText(weather.getClimateType());
         maxTemp.setText("Max Temperature: " + weather.getMaximumTemp() + Constants.DEGREES_UNICODE + "F");
@@ -138,6 +142,36 @@ public class DetailsActivity extends AppCompatActivity {
         }
         else if(windDirectionAbbreviation.equals("NNW")){
             return "North-NorthWest";
+        }
+        else if(windDirectionAbbreviation.equals("NNE")){
+            return "North-NorthEast";
+        }
+        else if(windDirectionAbbreviation.equals("ESE")){
+            return "East-SouthEast";
+        }
+        else if(windDirectionAbbreviation.equals("ENE")){
+            return "East-NorthEast";
+        }
+        else if(windDirectionAbbreviation.equals("SSE")){
+            return "South-SouthEast";
+        }
+        else if(windDirectionAbbreviation.equals("WSW")){
+            return "West-SouthWest";
+        }
+        else if(windDirectionAbbreviation.equals("WNW")){
+            return "West-NorthWest";
+        }
+        else if(windDirectionAbbreviation.equals("SW")){
+            return "SouthWest";
+        }
+        else if(windDirectionAbbreviation.equals("SE")){
+            return "SouthEast";
+        }
+        else if(windDirectionAbbreviation.equals("NW")){
+            return "NorthWest";
+        }
+        else if(windDirectionAbbreviation.equals("NE")){
+            return "NorthEast";
         }
         else {
             return windDirectionAbbreviation;
