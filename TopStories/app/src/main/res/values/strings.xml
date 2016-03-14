@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="submitButton">Submit</string>
+    <string-array name="spinnerItems">
+        <item>home</item>
+        <item>world</item>
+        <item>national</item>
+        <item>politics</item>
+        <item>nyregion</item>
+        <item>business</item>
+        <item>opinion</item>
+        <item>science</item>
+        <item>health</item>
+        <item>sports</item>
+        <item>arts</item>
+        <item>fashion</item>
+        <item>dining</item>
+        <item>travel</item>
+        <item>magazine</item>
+        <item>realstate</item>
+    </string-array>
+
+
+    <string name="story_title">Story Title</string>
+    <string name="story_byline">Story Byline</string>
+    <string name="story_image">Story Image</string>
+    <string name="story_abstract_title">Abstract</string>
+</resources>

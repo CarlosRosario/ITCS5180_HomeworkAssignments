@@ -11,9 +11,8 @@ public class City implements Serializable{
     String state;
 
     public City(String cityName, String state){
-        // using the accessor method to set the city so that there is onl one location where we are replacing space characters with underscore characters as required by the wunderground api.
         setCityName(cityName);
-        this.state = state;
+        setState(state);
     }
 
     public String getCityName() {
@@ -29,6 +28,11 @@ public class City implements Serializable{
     }
 
     public void setState(String state) {
-        this.state = state;
+        this.state = state.replace(" ", "_"); // Just in case user enters something like "North Carolina"
+    }
+
+    @Override
+    public String toString() {
+        return cityName.replace("_", " ") + ", " + state.replace("_", " ");
     }
 }
