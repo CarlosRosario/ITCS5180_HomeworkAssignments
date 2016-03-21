@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/customactions">
+
+    <group>
+        <item
+            android:id="@+id/add_city"
+            android:title="@string/custom_action_add_city"
+            android:onClick="addCity"/>
+        <item
+            android:id="@+id/clear_cities"
+            android:title="@string/custom_action_clear_cities"
+            android:onClick="clearCities"/>
+        />
+        <item
+            android:id="@+id/view_notes"
+            android:title="@string/custom_action_view_notes"
+            android:onClick="viewNote"/>
+        />
+    </group>
+</menu>

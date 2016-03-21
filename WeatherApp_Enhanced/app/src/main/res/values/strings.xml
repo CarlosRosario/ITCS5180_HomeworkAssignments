@@ -1,0 +1,23 @@
+<resources>
+    <!-- Activity Action Bar Titles -->
+    <string name="app_name">WeatherApp</string>
+    <string name="add_city_name">Add City</string>
+    <string name="hourly_data">HourlyData Activity</string>
+    <string name="details_name">Details Activity</string>
+    <!-- Misc -->
+    <string name="no_cities_message">There are no cities to display. Add using the Add City from the menu</string>
+    <string name="city_hint">City Name (Eg. Charlotte)</string>
+    <string name="state_hint">State Initial (Eg. NC)</string>
+    <string name="save_city_button_text">Save City</string>
+    <string name="current_location">Current Location:</string>
+    <string name="feels_like_label">Feels Like:</string>
+    <string name="humidity_label">Humidity:</string>
+    <string name="dewpoint_label">Dewpoint:</string>
+    <string name="pressure_label">Pressure:</string>
+    <string name="winds_label">Winds:</string>
+    <string name="clouds_label">Clouds:</string>
+    <!-- Custom Actions -->
+    <string name="custom_action_add_city">Add City</string>
+    <string name="custom_action_clear_cities">Clear Saved Cities</string>
+    <string name="custom_action_view_notes">View Notes</string>
+</resources>
