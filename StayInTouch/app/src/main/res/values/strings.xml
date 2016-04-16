@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Stay In Touch</string>
+
+    <!-- Login Activity -->
+    <string name="login_activity_name">Stay In Touch (Login)</string>
+    <string name="loginActivityEmailHint">Email</string>
+    <string name="loginActivityPasswordHint">Password</string>
+    <string name="loginActivityLoginButtonText">Login</string>
+    <string name="loginActivityNewAccountText">Create New Account</string>
+
+    <!--Sign Up Activity -->
+    <string name="signup_activity_name">Stay In Touch (SignUp)</string>
+    <string name="signupActivityNameHint">User First Last Name</string>\
+    <string name="signupActivityEmailHint">Email</string>
+    <string name="signupActivityPhoneHint">Phone Number</string>
+    <string name="signupActivityPasswordHint">Password</string>
+    <string name="signupActivityConfirmPasswordHint">Confirm Password</string>
+    <string name="signupActivitySignUpButtonText">Sign Up</string>
+    <string name="signupActivityCancelButtonText">Cancel</string>
+
+
+</resources>
