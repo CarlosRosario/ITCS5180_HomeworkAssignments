@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         // Login Button logic
+        //noinspection ConstantConditions
         findViewById(R.id.loginActivityLoginButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,15 +48,13 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onAuthenticated(AuthData authData) {
                                 // Authentication just completed successfully :)
-                                Map<String, String> map = new HashMap<String, String>();
-                                map.put("provider", authData.getProvider());
-                                if(authData.getProviderData().containsKey("displayName")) {
-                                    map.put("displayName", authData.getProviderData().get("displayName").toString());
-                                }
-                                firebase.child("users").child(authData.getUid()).setValue(map);
-
-                                Intent ConversationsActivityIntent = new Intent(LoginActivity.this, ConversationsActivity.class);
-                                startActivity(ConversationsActivityIntent);
+                                //Map<String, String> map = new HashMap<String, String>();
+                                //map.put("provider", authData.getProvider());
+                                //if(authData.getProviderData().containsKey("displayName")) {
+                                //    map.put("displayName", authData.getProviderData().get("displayName").toString());
+                                //}
+                                //firebase.child("users").child(authData.getUid()).setValue(map);
+                                navigateToConversationsActivity(true);
                             }
                             @Override
                             public void onAuthenticationError(FirebaseError error) {
@@ -67,10 +66,11 @@ public class LoginActivity extends AppCompatActivity {
 
 
         // Create New Account Button logic
+        //noinspection ConstantConditions
         findViewById(R.id.loginActivityNewAccountButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                navigateToSignUpActivity(false);
             }
         });
 
@@ -93,6 +93,15 @@ public class LoginActivity extends AppCompatActivity {
     public void navigateToConversationsActivity(boolean finishLoginActivity){
         Intent conversationsActivityIntent = new Intent(LoginActivity.this, ConversationsActivity.class);
         startActivity(conversationsActivityIntent);
+
+        if(finishLoginActivity){
+            finish();
+        }
+    }
+
+    public void navigateToSignUpActivity(boolean finishLoginActivity){
+        Intent signupActivityIntent = new Intent(LoginActivity.this, SignUpActivity.class);
+        startActivity(signupActivityIntent);
 
         if(finishLoginActivity){
             finish();
