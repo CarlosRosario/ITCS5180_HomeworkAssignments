@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group>
+        <item
+            android:id="@+id/show"
+            android:title="@string/conversationsActivity_custom_actionbar_menu_item_edit_profile"
+            android:onClick="editProfile"/>
+        <item
+            android:id="@+id/clear"
+            android:title="@string/conversationsActivity_custom_actionbar_menu_item_logout"
+            android:onClick="logout"/>
+    </group>
+
+</menu>
