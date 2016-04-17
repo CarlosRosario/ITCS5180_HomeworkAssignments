@@ -36,12 +36,11 @@ public class MyApplication extends android.app.Application {
     }
 
     public String encodeDummyProfilePic(){
-        Bitmap bitmap= BitmapFactory.decodeResource(getResources(), R.drawable.dummy);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dummy);
         ByteArrayOutputStream stream=new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
         final byte[] image=stream.toByteArray();
-        System.out.println("byte array:"+image);
-        final String img_str = Base64.encodeToString(image, 0);
-        return img_str;
+        final String base64DummyImage = Base64.encodeToString(image, 0);
+        return base64DummyImage;
     }
 }
