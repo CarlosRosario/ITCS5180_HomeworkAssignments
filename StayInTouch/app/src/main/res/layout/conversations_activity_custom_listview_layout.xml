@@ -3,26 +3,36 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/categoryNameCustomTextView"
-        android:layout_weight=".5"
-        android:paddingLeft="10dp"
-        android:layout_gravity="start"
-        android:gravity="start"
-        android:text="test"/>
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/unknownprofilepic"
+        android:id="@+id/conversationsActivityProfileImageView"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/dollarAmountCustomTextView"
-        android:layout_weight=".5"
-        android:paddingRight="10dp"
-        android:gravity="end"
-        android:layout_gravity="end"
-        android:text="test"/>
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:id="@+id/conversationsActivityFullNameTextView"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="3dp"
+        android:text="First Name Last Name"/>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/redbubble"
+        android:id="@+id/conversationsActivityRedBubbleImageView"/>
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/conversationsActivityPhoneIconImageView"/>
 
 </LinearLayout>

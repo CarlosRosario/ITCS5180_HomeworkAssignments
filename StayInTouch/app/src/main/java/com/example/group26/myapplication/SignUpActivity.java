@@ -22,6 +22,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText emailEditText;
     EditText phoneNumberEditText;
     EditText passwordEditText;
+    EditText confirmedPasswordEditText;
 
 
     @Override
@@ -35,6 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
         emailEditText = (EditText)findViewById(R.id.signupActivityEmailEditText);
         phoneNumberEditText = (EditText)findViewById(R.id.signupActivityPhoneNumberEditText);
         passwordEditText = (EditText)findViewById(R.id.signupActivityPasswordEditText);
+        confirmedPasswordEditText = (EditText)findViewById(R.id.signupActivityPasswordConfirmationEditText);
 
         // Sign Up Button logic
         //noinspection ConstantConditions
@@ -46,40 +48,69 @@ public class SignUpActivity extends AppCompatActivity {
                 final String signUpEmail = emailEditText.getText().toString();
                 final String phoneNumber = phoneNumberEditText.getText().toString();
                 final String password = passwordEditText.getText().toString();
+                String confirmPassword = confirmedPasswordEditText.getText().toString();
 
-                // save user as registered user and to JSON store
-                firebase.createUser(signUpEmail, password, new Firebase.ValueResultHandler<Map<String,Object>>(){
-                    @Override
-                    public void onSuccess(Map<String, Object> stringObjectMap) {
+                // Make sure all fields are populated
+                if(fullName == null || fullName.isEmpty()){
+                    Toast.makeText(SignUpActivity.this, "Please enter your name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if(signUpEmail == null || signUpEmail.isEmpty()){
+                    Toast.makeText(SignUpActivity.this, "Please enter your email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if(phoneNumber == null || phoneNumber.isEmpty()){
+                    Toast.makeText(SignUpActivity.this, "Please enter your phone number", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if(password == null || password.isEmpty()){
+                    Toast.makeText(SignUpActivity.this, "Please enter a password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if(confirmPassword == null || confirmPassword.isEmpty()){
+                    Toast.makeText(SignUpActivity.this, "Please confirm your password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                        User newUser = new User();
-                        newUser.setFullName(fullName);
-                        newUser.setEmail(signUpEmail);
-                        newUser.setPhoneNumber(phoneNumber);
-                        newUser.setPassword(password);
-                        newUser.setBase64Picture(applicationContext.getDummyProfilePic());
+                // Make sure that password/confirm password fields are the same
+                if(password.equals(confirmPassword)){
+                    // save user as registered user and to JSON store
+                    firebase.createUser(signUpEmail, password, new Firebase.ValueResultHandler<Map<String,Object>>(){
+                        @Override
+                        public void onSuccess(Map<String, Object> stringObjectMap) {
 
-                        //firebase.child("users").child("username").push().setValue(newUser);
-                        firebase.child("users").push().setValue(newUser);
-                        Toast.makeText(SignUpActivity.this, "Successfully created new account", Toast.LENGTH_SHORT).show();
-                        finish(); // bring us back to the login activity
-                    }
+                            User newUser = new User();
+                            newUser.setFullName(fullName);
+                            newUser.setEmail(signUpEmail);
+                            newUser.setPhoneNumber(phoneNumber);
+                            newUser.setPassword(password);
+                            newUser.setBase64Picture(applicationContext.getDummyProfilePic());
 
-                    @Override
-                    public void onError(FirebaseError firebaseError) {
-                        int errorCode = firebaseError.getCode();
-
-                        switch (errorCode) {
-                            case FirebaseError.EMAIL_TAKEN:
-                                Toast.makeText(SignUpActivity.this, "Email is already taken", Toast.LENGTH_SHORT).show();
-                                break;
-
-                            default:
-                                Toast.makeText(SignUpActivity.this, firebaseError.toString(), Toast.LENGTH_SHORT).show();
-                                break;
+                            //firebase.child("users").child("username").push().setValue(newUser);
+                            firebase.child("users").push().setValue(newUser);
+                            Toast.makeText(SignUpActivity.this, "Successfully created new account", Toast.LENGTH_SHORT).show();
+                            finish(); // bring us back to the login activity
                         }
-                    }
-                });
+
+                        @Override
+                        public void onError(FirebaseError firebaseError) {
+                            int errorCode = firebaseError.getCode();
+
+                            switch (errorCode) {
+                                case FirebaseError.EMAIL_TAKEN:
+                                    Toast.makeText(SignUpActivity.this, "Email is already taken", Toast.LENGTH_SHORT).show();
+                                    break;
+
+                                default:
+                                    Toast.makeText(SignUpActivity.this, firebaseError.toString(), Toast.LENGTH_SHORT).show();
+                                    break;
+                            }
+                        }
+                    });
+                }
+                else {
+                    Toast.makeText(SignUpActivity.this, "passwords do not match", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -91,15 +122,5 @@ public class SignUpActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    public String retrieveDummyPicAsBase64String(){
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dummy);
-        ByteArrayOutputStream stream=new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
-        final byte[] image=stream.toByteArray();
-        System.out.println("byte array:"+image);
-        final String img_str = Base64.encodeToString(image, 0);
-        return img_str;
     }
 }

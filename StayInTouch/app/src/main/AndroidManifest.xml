@@ -3,6 +3,7 @@
     package="com.example.group26.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET">c</uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:name=".MyApplication"

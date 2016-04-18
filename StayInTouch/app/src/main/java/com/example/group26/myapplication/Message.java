@@ -10,6 +10,15 @@ public class Message {
     private String message_text;
     private String receiver;
     private String sender;
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getTimeStamp() {
         return timeStamp;
