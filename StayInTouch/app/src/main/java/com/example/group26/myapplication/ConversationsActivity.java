@@ -18,10 +18,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.firebase.client.Query;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -107,9 +109,6 @@ public class ConversationsActivity extends AppCompatActivity {
 //            }
 //        });
 
-
-
-
     }
 
 
@@ -119,7 +118,7 @@ public class ConversationsActivity extends AppCompatActivity {
             case REQUEST_CODE_ASK_PERMISSIONS: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Intent phoneCallIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:8642855208"));
+                    Intent phoneCallIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumberToDial));
                     try {
                         startActivity(phoneCallIntent);
                     }
@@ -137,6 +136,10 @@ public class ConversationsActivity extends AppCompatActivity {
         }
     }
 
+    public void setPermissionsPhoneNumber(String permissionsPhoneNumber){
+        this.phoneNumberToDial = permissionsPhoneNumber;
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -146,6 +149,51 @@ public class ConversationsActivity extends AppCompatActivity {
     }
 
     public void editProfile(MenuItem menuItem){
+
+        Firebase ref = new Firebase("https://stayintouch-5180.firebaseio.com/");
+        final String currentlyLoggedInUserEmail = ref.getAuth().getProviderData().get("email").toString();
+
+
+        Query queryRef = ref.child("users").orderByChild("email").equalTo(currentlyLoggedInUserEmail);
+        queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                HashMap data = (HashMap) dataSnapshot.getValue();
+
+                // this loop only runs one time
+                for (Object key : data.keySet()) {
+                    HashMap innerData = (HashMap) data.get(key);
+
+                    String currentlyLoggedInPassword = innerData.get("password").toString();
+                    String currentlyLoggedInPhoneNumber = innerData.get("phoneNumber").toString();
+                    String currentlyLoggedInFullName = innerData.get("fullName").toString();
+                    String currentlyLoggedInProfilePicture = innerData.get("base64Picture").toString();
+
+                    User user = new User();
+                    user.setBase64Picture(currentlyLoggedInProfilePicture);
+                    user.setEmail(currentlyLoggedInUserEmail);
+                    user.setPassword(currentlyLoggedInPassword);
+                    user.setFullName(currentlyLoggedInFullName);
+                    user.setPhoneNumber(currentlyLoggedInPhoneNumber);
+
+//                    Log.d("test3", "abc: " + innerData.get("email").toString());
+//                    Log.d("test3", "abc: " + innerData.get("password").toString());
+//                    Log.d("test3", "abc: " + innerData.get("phoneNumber").toString());
+//                    Log.d("test3", "abc: " + innerData.get("fullName").toString());
+//                    Log.d("test3", "abc: " + innerData.get("base64Picture").toString());
+
+                    Intent editProfileActivityIntent = new Intent(ConversationsActivity.this, EditProfileActivity.class);
+                    editProfileActivityIntent.putExtra("USER", user);
+                    startActivity(editProfileActivityIntent);
+                    break;
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+            }
+        });
+
 
     }
 

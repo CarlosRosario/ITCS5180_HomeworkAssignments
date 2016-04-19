@@ -7,10 +7,12 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:src="@drawable/unknownprofilepic"
-        android:id="@+id/conversationsActivityProfileImageView"/>
+        android:id="@+id/conversationsActivityProfileImageView"
+        android:layout_weight=".1"
+         />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
@@ -18,7 +20,8 @@
         android:id="@+id/conversationsActivityFullNameTextView"
         android:layout_marginTop="10dp"
         android:paddingLeft="3dp"
-        android:text="First Name Last Name"/>
+        android:text="First Name Last Name"
+        android:layout_weight=".7"/>
 
     <ImageView
         android:layout_width="20dp"
@@ -26,13 +29,16 @@
         android:layout_marginLeft="13dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/redbubble"
-        android:id="@+id/conversationsActivityRedBubbleImageView"/>
+        android:id="@+id/conversationsActivityRedBubbleImageView"
+        android:layout_weight=".1"/>
 
     <ImageView
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginLeft="17dp"
-        android:layout_marginTop="5dp"
-        android:id="@+id/conversationsActivityPhoneIconImageView"/>
+        android:layout_marginTop="10dp"
+        android:id="@+id/conversationsActivityPhoneIconImageView"
+        android:layout_weight=".1"
+        />
 
 </LinearLayout>

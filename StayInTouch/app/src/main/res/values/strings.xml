@@ -23,5 +23,19 @@
     <string name="conversationsActivity_custom_actionbar_menu_item_edit_profile">Edit Profile</string>
     <string name="conversationsActivity_custom_actionbar_menu_item_logout">Logout</string>
 
+    <!-- Edit Profile Activity -->
+    <string name="EditProfileNameText">Name</string>
+    <string name="EditProfileEmailId">Email Id</string>
+    <string name="editProfilePhoneNumber">Phone Number</string>
+    <string name="editProfilePassword">Password</string>
+    <string name="EditProfileUpdateButton">Update</string>
+    <string name="editProfileCancelButton">Cancel</string>
+
+    <!-- View Contacts Activity -->
+    <string name="viewContactPhoneLabel">Phone #:</string>
+    <string name="viewContactNameLabel">Name:</string>
+    <string name="viewContactEmailLabel">Email:</string>
+
+
 
 </resources>

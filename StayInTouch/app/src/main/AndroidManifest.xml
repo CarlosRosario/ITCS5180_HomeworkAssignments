@@ -25,6 +25,8 @@
             android:name=".SignUpActivity"
             android:label="@string/signup_activity_name" />
         <activity android:name=".ConversationsActivity"></activity>
+        <activity android:name=".EditProfileActivity"></activity>
+        <activity android:name=".ViewContactActivity"></activity>
     </application>
 
 </manifest>

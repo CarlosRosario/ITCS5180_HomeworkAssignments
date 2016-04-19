@@ -1,9 +1,11 @@
 package com.example.group26.myapplication;
 
+import java.io.Serializable;
+
 /**
  * Created by Carlos on 4/17/2016.
  */
-public class User {
+public class User implements Serializable{
 
     private String email;
     private String fullName;

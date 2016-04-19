@@ -84,7 +84,9 @@ public class ContactAdapter extends ArrayAdapter<User> {
             final int REQUEST_CODE_ASK_PERMISSIONS = 100;
             @Override
             public void onClick(View v) {
-                Log.d("test", "clicked phone is: " + contact.getPhoneNumber());
+                String selectedPhoneNumber = contact.getPhoneNumber();
+                Log.d("test", "clicked phone is: " + selectedPhoneNumber);
+                ((ConversationsActivity)mContext).setPermissionsPhoneNumber(selectedPhoneNumber);
 
 
                 int hasPhonePermissions = ContextCompat.checkSelfPermission(mContext, Manifest.permission.CALL_PHONE);
@@ -93,11 +95,7 @@ public class ContactAdapter extends ArrayAdapter<User> {
                     return;
                 }
 
-
-
-
-
-                Intent phoneCallIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + contact.getPhoneNumber()));
+                Intent phoneCallIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + selectedPhoneNumber));
                 try {
                     mContext.startActivity(phoneCallIntent);
                 }
@@ -106,13 +104,7 @@ public class ContactAdapter extends ArrayAdapter<User> {
                     Log.d("error", e.getStackTrace().toString());
                 }
             }
-
-
-
         });
-
-
-
         return convertView;
     }
 
