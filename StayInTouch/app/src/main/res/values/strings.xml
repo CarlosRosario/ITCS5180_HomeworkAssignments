@@ -35,6 +35,15 @@
     <string name="viewContactPhoneLabel">Phone #:</string>
     <string name="viewContactNameLabel">Name:</string>
     <string name="viewContactEmailLabel">Email:</string>
+    <string name="viewMessagesNameTextView">FirstName LastName</string>
+    <string name="viewMessagesMessageTextView">Message text here</string>
+    <string name="viewMessagesTimestampTextView">MM/DD/YYYY HH:MM</string>
+    <string name="viewMessagesMessageEditText">Enter message</string>
+    <string name="viewMessagesSendButton">Send</string>
+
+    <!-- View Messages Activity -->
+    <string name="viewmessagesActivity_custom_actionbar_menu_item_viewcontact">View Contact</string>
+    <string name="viewmessageActivity_custom_actionbar_menu_item_callcontact">Call Contact</string>
 
 
 

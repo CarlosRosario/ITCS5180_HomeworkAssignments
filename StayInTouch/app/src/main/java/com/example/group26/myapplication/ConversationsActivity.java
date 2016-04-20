@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -37,7 +38,7 @@ public class ConversationsActivity extends AppCompatActivity {
     ListView listView;
     ContactAdapter contactAdapter;
     final int REQUEST_CODE_ASK_PERMISSIONS = 100;
-
+    Firebase firebase;
     String phoneNumberToDial;
 
     @Override
@@ -45,18 +46,29 @@ public class ConversationsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversations);
         applicationContext = (MyApplication)getApplicationContext();
-        Firebase firebase = applicationContext.getFireBase();
+        firebase = applicationContext.getFireBase();
 
 
-        firebase.child("users").addValueEventListener(new ValueEventListener() {
+        firebase.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+                final String currentlyLoggedInUserEmail = firebase.getAuth().getProviderData().get("email").toString();
+
+                User me = null;
                 for (DataSnapshot userSnapShot : dataSnapshot.getChildren()) {
                     User contact = userSnapShot.getValue(User.class);
                     Log.d("test", contact.getFullName());
                     Log.d("test", contact.getEmail());
-                    contacts.add(contact);
+                    if(!contact.getEmail().equals(currentlyLoggedInUserEmail)) {
+                        contacts.add(contact);
+                    }
+                    else {
+                        me = contact;
+                    }
                 }
+
+                final String myName = me.getFullName();
 
                 // Create Listview with custom adapter
                 Log.d("test", "about to create adapter");
@@ -65,6 +77,16 @@ public class ConversationsActivity extends AppCompatActivity {
                 listView.setAdapter(contactAdapter);
                 contactAdapter.setNotifyOnChange(true);
 
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        User selectedContact = contacts.get(position);
+                        Intent viewMessasgesActivityIntent = new Intent(ConversationsActivity.this, ViewMessagesActivity.class);
+                        viewMessasgesActivityIntent.putExtra("CONTACT", selectedContact);
+                        viewMessasgesActivityIntent.putExtra("MYNAME", myName);
+                        startActivity(viewMessasgesActivityIntent);
+                    }
+                });
             }
 
             @Override
@@ -111,7 +133,6 @@ public class ConversationsActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
@@ -140,7 +161,6 @@ public class ConversationsActivity extends AppCompatActivity {
         this.phoneNumberToDial = permissionsPhoneNumber;
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -150,11 +170,10 @@ public class ConversationsActivity extends AppCompatActivity {
 
     public void editProfile(MenuItem menuItem){
 
-        Firebase ref = new Firebase("https://stayintouch-5180.firebaseio.com/");
-        final String currentlyLoggedInUserEmail = ref.getAuth().getProviderData().get("email").toString();
+        final String currentlyLoggedInUserEmail = firebase.getAuth().getProviderData().get("email").toString();
+        Log.d("re-auth", "current logged in email: " + currentlyLoggedInUserEmail);
 
-
-        Query queryRef = ref.child("users").orderByChild("email").equalTo(currentlyLoggedInUserEmail);
+        Query queryRef = firebase.child("users").orderByChild("email").equalTo(currentlyLoggedInUserEmail);
         queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -164,6 +183,7 @@ public class ConversationsActivity extends AppCompatActivity {
                 for (Object key : data.keySet()) {
                     HashMap innerData = (HashMap) data.get(key);
 
+                    String uniqueKeyForUser = key.toString();
                     String currentlyLoggedInPassword = innerData.get("password").toString();
                     String currentlyLoggedInPhoneNumber = innerData.get("phoneNumber").toString();
                     String currentlyLoggedInFullName = innerData.get("fullName").toString();
@@ -176,14 +196,9 @@ public class ConversationsActivity extends AppCompatActivity {
                     user.setFullName(currentlyLoggedInFullName);
                     user.setPhoneNumber(currentlyLoggedInPhoneNumber);
 
-//                    Log.d("test3", "abc: " + innerData.get("email").toString());
-//                    Log.d("test3", "abc: " + innerData.get("password").toString());
-//                    Log.d("test3", "abc: " + innerData.get("phoneNumber").toString());
-//                    Log.d("test3", "abc: " + innerData.get("fullName").toString());
-//                    Log.d("test3", "abc: " + innerData.get("base64Picture").toString());
-
                     Intent editProfileActivityIntent = new Intent(ConversationsActivity.this, EditProfileActivity.class);
                     editProfileActivityIntent.putExtra("USER", user);
+                    editProfileActivityIntent.putExtra("USERUNIQUEKEY", uniqueKeyForUser);
                     startActivity(editProfileActivityIntent);
                     break;
                 }
@@ -193,8 +208,6 @@ public class ConversationsActivity extends AppCompatActivity {
             public void onCancelled(FirebaseError firebaseError) {
             }
         });
-
-
     }
 
     public void logout(MenuItem menuItem){

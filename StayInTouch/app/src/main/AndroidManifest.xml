@@ -27,6 +27,7 @@
         <activity android:name=".ConversationsActivity"></activity>
         <activity android:name=".EditProfileActivity"></activity>
         <activity android:name=".ViewContactActivity"></activity>
+        <activity android:name=".ViewMessagesActivity"></activity>
     </application>
 
 </manifest>
