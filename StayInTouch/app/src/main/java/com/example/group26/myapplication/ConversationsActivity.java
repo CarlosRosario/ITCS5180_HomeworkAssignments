@@ -58,8 +58,6 @@ public class ConversationsActivity extends AppCompatActivity {
                 User me = null;
                 for (DataSnapshot userSnapShot : dataSnapshot.getChildren()) {
                     User contact = userSnapShot.getValue(User.class);
-                    Log.d("test", contact.getFullName());
-                    Log.d("test", contact.getEmail());
                     if(!contact.getEmail().equals(currentlyLoggedInUserEmail)) {
                         contacts.add(contact);
                     }
@@ -69,10 +67,11 @@ public class ConversationsActivity extends AppCompatActivity {
                 }
 
                 final String myName = me.getFullName();
+                final String myEmail = me.getEmail();
 
                 // Create Listview with custom adapter
                 Log.d("test", "about to create adapter");
-                contactAdapter = new ContactAdapter(ConversationsActivity.this, R.layout.conversations_activity_custom_listview_layout, contacts);
+                contactAdapter = new ContactAdapter(ConversationsActivity.this, R.layout.conversations_activity_custom_listview_layout, contacts, myEmail);
                 listView = (ListView) findViewById(R.id.conversationsActivityListView);
                 listView.setAdapter(contactAdapter);
                 contactAdapter.setNotifyOnChange(true);
@@ -81,7 +80,8 @@ public class ConversationsActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
 
-                        Query queryRef = firebase.child("Messages").orderByChild("email").equalTo(contacts.get(position).getEmail());
+                        Log.d("testing3", contacts.get(position).getEmail());
+                        Query queryRef = firebase.child("Messages").orderByChild("email").equalTo(myEmail);
                         queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {

@@ -40,6 +40,8 @@ public class ContactAdapter extends ArrayAdapter<User> {
     //Map<String, List<Message>> auxilaryData;
     Context mContext;
     int mResource;
+    String myEmail;
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -74,7 +76,8 @@ public class ContactAdapter extends ArrayAdapter<User> {
         final ImageView redBubbleImageView = (ImageView)convertView.findViewById(R.id.conversationsActivityRedBubbleImageView);
         final List<Message> messagesForThisContact = new ArrayList<Message>();
         final Firebase firebase = new Firebase("https://stayintouch-5180.firebaseio.com/");
-        Query queryRef = firebase.child("Messages").orderByChild("email").equalTo(contact.getEmail());
+        Log.d("testing3", "Contact Adapter" + contact.getEmail());
+        Query queryRef = firebase.child("Messages").orderByChild("email").equalTo(myEmail);
         queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -131,11 +134,12 @@ public class ContactAdapter extends ArrayAdapter<User> {
         return convertView;
     }
 
-    public ContactAdapter(Context context, int resource, List<User> objects/*, Map<String, List<Message>> auxilaryData*/){
+    public ContactAdapter(Context context, int resource, List<User> objects, String myEmail/*, Map<String, List<Message>> auxilaryData*/){
         super(context, resource, objects);
         this.mData = objects;
         //this.auxilaryData = auxilaryData;
         this.mContext = context;
         this.mResource = resource;
+        this.myEmail = myEmail;
     }
 }
