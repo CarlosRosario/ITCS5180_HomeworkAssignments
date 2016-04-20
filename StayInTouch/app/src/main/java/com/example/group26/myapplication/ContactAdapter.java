@@ -19,8 +19,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
+import com.firebase.client.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +37,7 @@ import java.util.Map;
 public class ContactAdapter extends ArrayAdapter<User> {
 
     List<User> mData;
-    Map<String, List<Message>> auxilaryData;
+    //Map<String, List<Message>> auxilaryData;
     Context mContext;
     int mResource;
 
@@ -41,6 +48,7 @@ public class ContactAdapter extends ArrayAdapter<User> {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(mResource, parent, false);
         }
+
 
         final User contact = mData.get(position);
 
@@ -63,16 +71,31 @@ public class ContactAdapter extends ArrayAdapter<User> {
         }
 
         // Set red bubble if applicable
-//        ImageView redBubbleImageView = (ImageView)convertView.findViewById(R.id.conversationsActivityRedBubbleImageView);
-//
-//        // Get Messages for this user (using email as the key)
-//        List<Message> messages = auxilaryData.get(contact.getEmail());
-//        for(Message message : messages){
-//            if(!message.isMessage_read()){
-//                Picasso.with(mContext).load(R.drawable.redbubble).into(redBubbleImageView);
-//                break;
-//            }
-//        }
+        final ImageView redBubbleImageView = (ImageView)convertView.findViewById(R.id.conversationsActivityRedBubbleImageView);
+        final List<Message> messagesForThisContact = new ArrayList<Message>();
+        final Firebase firebase = new Firebase("https://stayintouch-5180.firebaseio.com/");
+        Query queryRef = firebase.child("Messages").orderByChild("email").equalTo(contact.getEmail());
+        queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot messageSnapshot : dataSnapshot.getChildren()) {
+                    Message contactMessage = messageSnapshot.getValue(Message.class);
+                    messagesForThisContact.add(contactMessage);
+                }
+
+                for(Message message: messagesForThisContact){
+                    if(!message.isMessage_read()){
+                        Picasso.with(mContext).load(R.drawable.redbubble).into(redBubbleImageView);
+                        break;
+                    }
+                }
+            }
+                @Override
+                public void onCancelled (FirebaseError firebaseError){
+
+
+                }
+        });
 
         // Set phone icon
         Log.d("test", "setting phone icon");

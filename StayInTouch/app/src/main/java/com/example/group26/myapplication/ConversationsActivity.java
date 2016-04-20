@@ -25,6 +25,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 import com.firebase.client.Query;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,7 +48,6 @@ public class ConversationsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_conversations);
         applicationContext = (MyApplication)getApplicationContext();
         firebase = applicationContext.getFireBase();
-
 
         firebase.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -79,7 +79,32 @@ public class ConversationsActivity extends AppCompatActivity {
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+
+                        Query queryRef = firebase.child("Messages").orderByChild("email").equalTo(contacts.get(position).getEmail());
+                        queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for (DataSnapshot messageSnapshot : dataSnapshot.getChildren()) {
+                                    String key = messageSnapshot.getKey();
+                                    final Message contactMessage = messageSnapshot.getValue(Message.class);
+                                    contactMessage.setMessage_read(true);
+                                    firebase.child("Messages").child(key).setValue(contactMessage);
+
+                                    ImageView redBubble = (ImageView)view.findViewById(R.id.conversationsActivityRedBubbleImageView);
+                                    redBubble.setVisibility(View.INVISIBLE);
+
+
+                                }
+                            }
+                            @Override
+                            public void onCancelled (FirebaseError firebaseError){
+
+
+                            }
+                        });
+
+
                         User selectedContact = contacts.get(position);
                         Intent viewMessasgesActivityIntent = new Intent(ConversationsActivity.this, ViewMessagesActivity.class);
                         viewMessasgesActivityIntent.putExtra("CONTACT", selectedContact);
@@ -94,43 +119,6 @@ public class ConversationsActivity extends AppCompatActivity {
 
             }
         });
-
-//        final Map<String, List<Message>> messagesByEmail = new HashMap<String, List<Message>>();
-//        firebase.child("messages").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                List<Message> currentMessagesList = new ArrayList<Message>();
-//                String previousEmail = "";
-//                String currentEmail = "";
-//                for (DataSnapshot messageSnapShot : dataSnapshot.getChildren()) {
-//                    Message message = messageSnapShot.getValue(Message.class);
-//
-//                    // Store current messages associated email in 'currentEmail'
-//                    currentEmail = message.getEmail();
-//
-//                    // If there isn't a previousEmail yet stored then that means we are on first iteration
-//                    if (previousEmail == null || previousEmail.isEmpty()) {
-//                        currentMessagesList.add(message);
-//                        previousEmail = message.getEmail();
-//                    } else if (previousEmail.equals(currentEmail)) {
-//                        currentMessagesList.add(message);
-//                    } else {
-//                        messagesByEmail.put(previousEmail, currentMessagesList);
-//                        currentMessagesList = new ArrayList<Message>();
-//                        currentMessagesList.add(message);
-//                        previousEmail = currentEmail;
-//                    }
-//                }
-//
-//                messagesByEmail.put(currentEmail, currentMessagesList);
-//            }
-//
-//            @Override
-//            public void onCancelled(FirebaseError firebaseError) {
-//
-//            }
-//        });
-
     }
 
     @Override

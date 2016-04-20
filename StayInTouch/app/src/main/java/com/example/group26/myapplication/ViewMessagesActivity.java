@@ -18,7 +18,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,6 +60,26 @@ public class ViewMessagesActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.viewMessagesListView);
         listView.setAdapter(messageAdapter);
         messageAdapter.setNotifyOnChange(true);
+
+
+        firebase.child("Messages").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                messageAdapter.clear();
+                for(DataSnapshot messageSnapshot: dataSnapshot.getChildren()){
+                    Message message = messageSnapshot.getValue(Message.class);
+                    if(message.getEmail().equals(selectedContact.getEmail()) || message.getReceiver().equals(myName)){
+                        messageAdapter.add(message);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
 
         //noinspection ConstantConditions
         findViewById(R.id.viewMessagesSendButton).setOnClickListener(new View.OnClickListener() {
@@ -150,6 +173,10 @@ public class ViewMessagesActivity extends AppCompatActivity {
                 return;
             }
         }
+    }
+
+    public void removeMessage(Message message){
+        messageAdapter.remove(message);
     }
 
 

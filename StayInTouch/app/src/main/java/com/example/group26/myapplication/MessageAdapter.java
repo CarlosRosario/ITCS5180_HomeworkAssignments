@@ -1,6 +1,7 @@
 package com.example.group26.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.*;
 import android.util.Log;
@@ -12,9 +13,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
+import com.firebase.client.ValueEventListener;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,13 +36,13 @@ public class MessageAdapter extends ArrayAdapter<Message> {
     String myName;
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(mResource, parent, false);
         }
 
-        Message message = mData.get(position);
+        final Message message = mData.get(position);
 
         if(message.getSender().equals(myName)){
             // This is one of "my" messages - lets color it beige
@@ -71,7 +79,32 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         trashCan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "clicked trash can", Toast.LENGTH_SHORT).show();
+                final Firebase firebase = new Firebase("https://stayintouch-5180.firebaseio.com/");
+                final String messageTimeStamp = message.getTimeStamp(); // timestamp is most unique out of all fields inside of message object
+
+                Query queryRef = firebase.child("Messages").orderByChild("timeStamp").equalTo(messageTimeStamp);
+                queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        HashMap data = (HashMap) dataSnapshot.getValue();
+
+                        // this loop only runs one time - even without the break statement
+                        for (Object key : data.keySet()) {
+                            HashMap innerData = (HashMap) data.get(key);
+
+                            String uniqueKeyForUser = key.toString();
+                            firebase.child("Messages").child(uniqueKeyForUser).removeValue();
+                            ((ViewMessagesActivity)mContext).removeMessage(message);
+                            break;
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+                    }
+                });
+
+
             }
         });
         return convertView;
