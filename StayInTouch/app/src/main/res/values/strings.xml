@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Stay In Touch</string>
+
+    <!-- Login Activity -->
+    <string name="login_activity_name">Stay In Touch (Login)</string>
+    <string name="loginActivityEmailHint">Email</string>
+    <string name="loginActivityPasswordHint">Password</string>
+    <string name="loginActivityLoginButtonText">Login</string>
+    <string name="loginActivityNewAccountText">Create New Account</string>
+
+    <!-- Sign Up Activity -->
+    <string name="signup_activity_name">Stay In Touch (SignUp)</string>
+    <string name="signupActivityNameHint">User First Last Name</string>\
+    <string name="signupActivityEmailHint">Email</string>
+    <string name="signupActivityPhoneHint">Phone Number</string>
+    <string name="signupActivityPasswordHint">Password</string>
+    <string name="signupActivityConfirmPasswordHint">Confirm Password</string>
+    <string name="signupActivitySignUpButtonText">Sign Up</string>
+    <string name="signupActivityCancelButtonText">Cancel</string>
+
+    <!-- Conversations Activity -->
+    <string name="conversations_activity_name">Stay In Touch</string>
+    <string name="conversationsActivity_custom_actionbar_menu_item_edit_profile">Edit Profile</string>
+    <string name="conversationsActivity_custom_actionbar_menu_item_logout">Logout</string>
+
+    <!-- Edit Profile Activity -->
+    <string name="EditProfileNameText">Name</string>
+    <string name="EditProfileEmailId">Email Id</string>
+    <string name="editProfilePhoneNumber">Phone Number</string>
+    <string name="editProfilePassword">Password</string>
+    <string name="EditProfileUpdateButton">Update</string>
+    <string name="editProfileCancelButton">Cancel</string>
+
+    <!-- View Contacts Activity -->
+    <string name="viewContactPhoneLabel">Phone #:</string>
+    <string name="viewContactNameLabel">Name:</string>
+    <string name="viewContactEmailLabel">Email:</string>
+    <string name="viewMessagesNameTextView">FirstName LastName</string>
+    <string name="viewMessagesMessageTextView">Message text here</string>
+    <string name="viewMessagesTimestampTextView">MM/DD/YYYY HH:MM</string>
+    <string name="viewMessagesMessageEditText">Enter message</string>
+    <string name="viewMessagesSendButton">Send</string>
+
+    <!-- View Messages Activity -->
+    <string name="viewmessagesActivity_custom_actionbar_menu_item_viewcontact">View Contact</string>
+    <string name="viewmessageActivity_custom_actionbar_menu_item_callcontact">Call Contact</string>
+
+
+
+</resources>
