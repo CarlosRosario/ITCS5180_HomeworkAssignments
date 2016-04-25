@@ -1,0 +1,47 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.group26.stayintouchwithfragments.LoginFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/loginFragmentEmailEditText"
+            android:layout_marginTop="80dp"
+            android:hint="@string/loginFragmentEmailHint"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/loginFragmentPasswordEditText"
+            android:layout_below="@id/loginFragmentEmailEditText"
+            android:layout_marginTop="50dp"
+            android:hint="@string/loginFragmentPasswordHint"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/loginFragmentLoginButtonText"
+            android:id="@+id/loginFragmentLoginButton"
+            android:layout_below="@id/loginFragmentPasswordEditText"
+            android:layout_marginTop="50dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/loginFragmentNewAccountText"
+            android:id="@+id/loginFragmentNewAccountButton"
+            android:layout_below="@id/loginFragmentLoginButton"
+            android:layout_marginTop="50dp"/>
+    </RelativeLayout>
+</FrameLayout>
