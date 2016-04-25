@@ -100,7 +100,8 @@ public class SignUpFragment extends Fragment {
                         @Override
                         public void onSuccess(Map<String, Object> stringObjectMap) {
 
-                            Firebase newUserRef = firebase.child("users").child(fullName.trim().toLowerCase().replace(" ", ""));
+                            //Firebase newUserRef = firebase.child("users").child(fullName.trim().toLowerCase().replace(" ", ""));
+                            Firebase newUserRef = firebase.child("users").child(signUpEmail.toLowerCase().replaceAll("[@.]", "+"));
 
                             User newUser = new User();
                             newUser.setFullName(fullName);

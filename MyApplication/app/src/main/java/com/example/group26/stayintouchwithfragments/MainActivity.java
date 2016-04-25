@@ -20,19 +20,24 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.firebase.client.AuthData;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
+import com.firebase.client.ValueEventListener;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoginFragment.OnFragmentInteractionListener
-, SignUpFragment.OnFragmentInteractionListener{
+, SignUpFragment.OnFragmentInteractionListener, ContactsFragment.OnFragmentInteractionListener{
 
     String firebaseUrl = "https://stayintouchfrag-5180.firebaseio.com/";
     String dummyProfilePic;
     FirebaseSerialize firebase;
     String phoneNumberToDial;
+    User currentlyLoggedInUser;
 
     private final String LOGINFRAGMENTTAG = "LOGIN";
     private final String SIGNUPFRAGMENTTAG = "SIGNUP";
@@ -40,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnF
     private final String CONTACTSFRAGMENTTAG = "CONTACTS";
     private final String ARCHIVEDCONVERSATIONSFRAGMENTTAG = "ARCHIVED";
     private final String SETTINGSFRAGMENTTAG = "SETTINGS";
+    private final String VIEWMESSAGESFRAGMENTTAG = "VIEWMESSAGES";
+    private final String VIEWCONTACTFRAGMENTTAG = "VIEWCONTACT";
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -166,6 +173,7 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnF
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
+
     /* The click listener for ListView in the navigation drawer */
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
@@ -176,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnF
     }
 
     private void selectItem(int position) {
-        // update the main content by replacing fragments
+        // Update the main content by replacing fragments
         switch (position) {
             case 0:
                 // ignore
@@ -286,7 +294,6 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnF
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
             case 100: {
-                // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Intent phoneCallIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumberToDial));
                     try {
@@ -325,7 +332,44 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnF
 
     @Override
     public void navigateToConversationsFragment() {
+
+        // User has successfully logged in, lets try to update the navigation drawer profile image + user name
+        // First, lets get the email of the currently logged in user.
+        String currentlyLoggedInUserEmail = firebase.getAuth().getProviderData().get("email").toString();
+
+        // Next, lets use the currently logged in user email to retrieve the corresponding User object.
+        // The RetrieveCurrentUserValueEventListener will then perform all the work necessary to update
+        // the navigation drawer with the users profile image/user name.
+        Firebase userRef = firebase.child("users").child(currentlyLoggedInUserEmail.toLowerCase().replaceAll("[@.]", "+"));
+        userRef.addListenerForSingleValueEvent(new RetrieveCurrentUserValueEventListener());
+
         getFragmentManager().beginTransaction().replace(R.id.mainActivityContainer, new ConversationFragment(), CONVERSATIONFRAGMENTTAG).commit();
+    }
+
+    private class RetrieveCurrentUserValueEventListener implements ValueEventListener{
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            User currentlyLoggedInUser = dataSnapshot.getValue(User.class);
+            Log.d("user", "current user name: " + currentlyLoggedInUser.getFullName());
+            Log.d("user", "current user password: " + currentlyLoggedInUser.getPassword());
+            Log.d("user", "current user phone: " + currentlyLoggedInUser.getPhoneNumber());
+            Log.d("user", "current user email: " + currentlyLoggedInUser.getEmail());
+
+            // Go ahead and update the first row in the navigation drawer ... I think there is a better way to do this though.
+            NavigationDrawerItem newNavigationDrawerItem = new NavigationDrawerItem();
+            newNavigationDrawerItem.setName(currentlyLoggedInUser.getFullName());
+            newNavigationDrawerItem.setBase64ProfilePicture(currentlyLoggedInUser.getBase64Picture());
+            navigationDrawerItemsList.remove(0);
+            navigationDrawerItemsList.add(0, newNavigationDrawerItem);
+            navigationDrawerItemAdapter = new NavigationDrawerItemAdapter(MainActivity.this, 0, navigationDrawerItemsList);
+            mDrawerList.setAdapter(navigationDrawerItemAdapter);
+            navigationDrawerItemAdapter.notifyDataSetChanged(); // I'm not sure that this line is necessary
+        }
+
+        @Override
+        public void onCancelled(FirebaseError firebaseError) {
+
+        }
     }
 
     @Override
@@ -340,6 +384,16 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnF
     @Override
     public void returnToLoginFragment() {
         getFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void navigateToViewMessagesFragment() {
+        getFragmentManager().beginTransaction().replace(R.id.mainActivityContainer, new ViewMessagesFragment(), VIEWMESSAGESFRAGMENTTAG).addToBackStack(null).commit();
+    }
+
+    @Override
+    public void navigateToViewContactFragment() {
+        getFragmentManager().beginTransaction().replace(R.id.mainActivityContainer, new ViewContactFragment(), VIEWCONTACTFRAGMENTTAG).addToBackStack(null).commit();
     }
 
     public boolean isCurrentUserAuthenticated(Firebase firebase){

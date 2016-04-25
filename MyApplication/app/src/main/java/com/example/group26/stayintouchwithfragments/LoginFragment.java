@@ -74,7 +74,7 @@ public class LoginFragment extends Fragment {
                     return;
                 }
 
-                String typedEmail = emailEditText.getText().toString();
+                final String typedEmail = emailEditText.getText().toString();
                 String typedPassword = passwordEditText.getText().toString();
 
                 firebase.authWithPassword(typedEmail, typedPassword, new Firebase.AuthResultHandler() {

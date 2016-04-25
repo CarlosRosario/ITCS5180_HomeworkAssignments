@@ -1,12 +1,13 @@
 package com.example.group26.stayintouchwithfragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.firebase.client.DataSnapshot;
@@ -26,12 +27,23 @@ public class ContactsFragment extends Fragment {
     List<User> contacts = new ArrayList<User>();
     ListView listView;
     ContactAdapter contactAdapter;
+    ContactsFragment.OnFragmentInteractionListener myListener;
 
 
     public ContactsFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(context instanceof ContactsFragment.OnFragmentInteractionListener){
+            myListener = (ContactsFragment.OnFragmentInteractionListener)context;
+        }
+        else {
+            throw new RuntimeException(context.toString() + " must implement ContactsFragment.OnFragmentInteractionListener");
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,6 +76,23 @@ public class ContactsFragment extends Fragment {
                 listView = (ListView) view.findViewById(R.id.contactsFragmentListView);
                 listView.setAdapter(contactAdapter);
                 contactAdapter.setNotifyOnChange(true);
+
+                // Clicking on a contact logic
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        myListener.navigateToViewMessagesFragment();
+                    }
+                });
+
+                // Long clicking on a contact logic
+                listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                        myListener.navigateToViewContactFragment();
+                        return true;
+                    }
+                });
             }
 
             @Override
@@ -72,10 +101,11 @@ public class ContactsFragment extends Fragment {
             }
         });
 
-
         return view;
-
-
     }
 
+    public interface OnFragmentInteractionListener{
+        void navigateToViewMessagesFragment();
+        void navigateToViewContactFragment();
+    }
 }
