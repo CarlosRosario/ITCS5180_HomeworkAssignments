@@ -1,9 +1,11 @@
 package com.example.group26.stayintouchwithfragments;
 
+import java.io.Serializable;
+
 /**
  * Created by carlosrosario on 4/23/16.
  */
-public class User {
+public class User implements Serializable{
 
     private String email;
     private String fullName;

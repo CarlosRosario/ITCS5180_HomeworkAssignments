@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoginFragment.OnFragmentInteractionListener
-, SignUpFragment.OnFragmentInteractionListener, ContactsFragment.OnFragmentInteractionListener{
+, SignUpFragment.OnFragmentInteractionListener, ContactsFragment.OnFragmentInteractionListener, ConversationFragment.OnFragmentInteractionListener{
 
     String firebaseUrl = "https://stayintouchfrag-5180.firebaseio.com/";
     String dummyProfilePic;
@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnF
     public void onBackPressed() {
         if(getFragmentManager().getBackStackEntryCount() > 0){
             getFragmentManager().popBackStack();
+            setTitle("Stay in Touch");
         }
         else {
             super.onBackPressed();
@@ -172,6 +173,7 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnF
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
+
 
 
     /* The click listener for ListView in the navigation drawer */
@@ -349,13 +351,19 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnF
         Firebase userRef = firebase.child("users").child(currentlyLoggedInUserEmail.toLowerCase().replaceAll("[@.]", "+"));
         userRef.addListenerForSingleValueEvent(new RetrieveCurrentUserValueEventListener());
 
-        getFragmentManager().beginTransaction().replace(R.id.mainActivityContainer, new ConversationFragment(), CONVERSATIONFRAGMENTTAG).commit();
+//        // Create conversation fragment
+//        ConversationFragment conversationFragment = new ConversationFragment();
+//        Bundle conversationFragmentArguments = new Bundle();
+//        conversationFragmentArguments.putSerializable("Firebase", firebase);
+//        conversationFragmentArguments.putSerializable("CurrentLoggedInUser", currentlyLoggedInUser);
+//        conversationFragment.setArguments(conversationFragmentArguments);
+//        getFragmentManager().beginTransaction().replace(R.id.mainActivityContainer, conversationFragment, CONVERSATIONFRAGMENTTAG).commit();
     }
 
     private class RetrieveCurrentUserValueEventListener implements ValueEventListener{
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-            User currentlyLoggedInUser = dataSnapshot.getValue(User.class);
+            currentlyLoggedInUser = dataSnapshot.getValue(User.class);
             Log.d("user", "current user name: " + currentlyLoggedInUser.getFullName());
             Log.d("user", "current user password: " + currentlyLoggedInUser.getPassword());
             Log.d("user", "current user phone: " + currentlyLoggedInUser.getPhoneNumber());
@@ -370,6 +378,14 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnF
             navigationDrawerItemAdapter = new NavigationDrawerItemAdapter(MainActivity.this, 0, navigationDrawerItemsList);
             mDrawerList.setAdapter(navigationDrawerItemAdapter);
             navigationDrawerItemAdapter.notifyDataSetChanged(); // I'm not sure that this line is necessary
+
+            // Create conversation fragment
+            ConversationFragment conversationFragment = new ConversationFragment();
+            Bundle conversationFragmentArguments = new Bundle();
+            conversationFragmentArguments.putSerializable("Firebase", firebase);
+            conversationFragmentArguments.putSerializable("CurrentLoggedInUser", currentlyLoggedInUser);
+            conversationFragment.setArguments(conversationFragmentArguments);
+            getFragmentManager().beginTransaction().replace(R.id.mainActivityContainer, conversationFragment, CONVERSATIONFRAGMENTTAG).commit();
         }
 
         @Override
@@ -393,14 +409,61 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnF
     }
 
     @Override
-    public void navigateToViewMessagesFragment() {
-        getFragmentManager().beginTransaction().replace(R.id.mainActivityContainer, new ViewMessagesFragment(), VIEWMESSAGESFRAGMENTTAG).addToBackStack(null).commit();
+    public void navigateToViewMessagesFragment(User selectedContact) {
+
+        ViewMessagesFragment viewMessagesFragment = new ViewMessagesFragment();
+        Bundle viewMessagesFragmentArguments = new Bundle();
+        viewMessagesFragmentArguments.putSerializable("Firebase", firebase);
+        viewMessagesFragmentArguments.putSerializable("SelectedContact", selectedContact);
+        viewMessagesFragmentArguments.putSerializable("CurrentlyLoggedInUser", currentlyLoggedInUser);
+        viewMessagesFragment.setArguments(viewMessagesFragmentArguments);
+        getFragmentManager().beginTransaction().replace(R.id.mainActivityContainer, viewMessagesFragment, VIEWMESSAGESFRAGMENTTAG).addToBackStack(null).commit();
     }
 
     @Override
-    public void navigateToViewContactFragment() {
-        getFragmentManager().beginTransaction().replace(R.id.mainActivityContainer, new ViewContactFragment(), VIEWCONTACTFRAGMENTTAG).addToBackStack(null).commit();
+    public void navigateToViewContactFragment(User selectedContact) {
+
+        ViewContactFragment viewContactFragment = new ViewContactFragment();
+        Bundle viewContactFragmentArguments = new Bundle();
+        viewContactFragmentArguments.putSerializable("SelectedContact", selectedContact);
+        viewContactFragment.setArguments(viewContactFragmentArguments);
+        getFragmentManager().beginTransaction().replace(R.id.mainActivityContainer, viewContactFragment, VIEWCONTACTFRAGMENTTAG).addToBackStack(null).commit();
     }
+
+    @Override
+    public void navigateToViewMessagesFragment(Conversation conversation) {
+
+        String otherContactEmail = "";
+        if(conversation.getParticipant1Email().equals(currentlyLoggedInUser.getEmail())){
+            otherContactEmail = conversation.getParticipant2Email();
+        }
+        else if (conversation.getParticipant2Email().equals(currentlyLoggedInUser.getEmail())){
+            otherContactEmail = conversation.getParticipant1Email();
+        }
+
+        firebase.child("users").child(otherContactEmail.replaceAll("[@.]", "+")).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                ViewMessagesFragment viewMessagesFragment = new ViewMessagesFragment();
+                Bundle viewMessagesFragmentArguments = new Bundle();
+                viewMessagesFragmentArguments.putSerializable("Firebase", firebase);
+                viewMessagesFragmentArguments.putSerializable("SelectedContact", user);
+                viewMessagesFragmentArguments.putSerializable("CurrentlyLoggedInUser", currentlyLoggedInUser);
+                viewMessagesFragment.setArguments(viewMessagesFragmentArguments);
+                getFragmentManager().beginTransaction().replace(R.id.mainActivityContainer, viewMessagesFragment, VIEWMESSAGESFRAGMENTTAG).addToBackStack(null).commit();
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+
+    }
+
 
     public boolean isCurrentUserAuthenticated(Firebase firebase){
 

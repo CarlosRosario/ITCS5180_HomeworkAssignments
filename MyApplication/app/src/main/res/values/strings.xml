@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">StayInTouch</string>
 
-    <!-- Login Activity -->
+    <!-- Login Fragment -->
     <string name="loginFragmentEmailHint">Email</string>
     <string name="loginFragmentPasswordHint">Password</string>
     <string name="loginFragmentLoginButtonText">Login</string>
     <string name="loginFragmentNewAccountText">Create New Account</string>
 
-    <!-- Sign Up Activity -->
+    <!-- Sign Up Fragment -->
     <string name="signupFragmentNameHint">User First Last Name</string>
     <string name="signupFragmentEmailHint">Email</string>
     <string name="signupFragmentPhoneHint">Phone Number</string>
@@ -15,6 +15,18 @@
     <string name="signupFragmentConfirmPasswordHint">Confirm Password</string>
     <string name="signupFragmentSignUpButtonText">Sign Up</string>
     <string name="signupFragmentCancelButtonText">Cancel</string>
+
+    <!-- View Messages Fragment -->
+    <string name="viewMessagesFragmentNameTextView">FirstName LastName</string>
+    <string name="viewMessagesFragmentMessageTextView">Message text here</string>
+    <string name="viewMessagesFragmentTimestampTextView">MM/DD/YYYY HH:MM</string>
+    <string name="viewMessagesFragmentMessageEditText">Enter message</string>
+    <string name="viewMessagesFragmentSendButton">Send</string>
+
+    <!-- View Contacts Activity -->
+    <string name="viewContactPhoneLabel">Phone #:</string>
+    <string name="viewContactNameLabel">Name:</string>
+    <string name="viewContactEmailLabel">Email:</string>
 
     <!-- Navigation Drawer Items -->
     <string-array name="navigationDrawerItems">
@@ -29,8 +41,7 @@
     <string name="drawer_open"></string>
     <string name="drawer_close"></string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 
 </resources>

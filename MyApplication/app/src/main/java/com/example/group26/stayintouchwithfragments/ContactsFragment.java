@@ -55,6 +55,7 @@ public class ContactsFragment extends Fragment {
         firebase = (FirebaseSerialize)getArguments().getSerializable("Firebase");
 
         // Grab list of all users (not including the currently logged in/auth'd user)
+        contacts.clear(); // avoid adding duplicate contacts to the screen
         firebase.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -81,7 +82,8 @@ public class ContactsFragment extends Fragment {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        myListener.navigateToViewMessagesFragment();
+                        User selectedContact = contacts.get(position);
+                        myListener.navigateToViewMessagesFragment(selectedContact);
                     }
                 });
 
@@ -89,7 +91,8 @@ public class ContactsFragment extends Fragment {
                 listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                        myListener.navigateToViewContactFragment();
+                        User selectedContact = contacts.get(position);
+                        myListener.navigateToViewContactFragment(selectedContact);
                         return true;
                     }
                 });
@@ -105,7 +108,7 @@ public class ContactsFragment extends Fragment {
     }
 
     public interface OnFragmentInteractionListener{
-        void navigateToViewMessagesFragment();
-        void navigateToViewContactFragment();
+        void navigateToViewMessagesFragment(User selectedContact);
+        void navigateToViewContactFragment(User selectedContact);
     }
 }

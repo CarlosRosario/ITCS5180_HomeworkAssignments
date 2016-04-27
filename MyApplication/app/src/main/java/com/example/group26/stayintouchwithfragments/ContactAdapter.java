@@ -63,7 +63,6 @@ public class ContactAdapter extends ArrayAdapter<User> {
             fullNameTextview.setText(fullName);
         }
 
-        // Set phone icon click listener
         ImageView phoneIconImageView = (ImageView)convertView.findViewById(R.id.contactsActivityPhoneIconImageView);
         phoneIconImageView.setOnClickListener(new View.OnClickListener() {
 

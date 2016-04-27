@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/viewMessagesFragmentNameTextView"
+            android:id="@+id/viewMessagesNameTextView"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:padding="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/viewMessagesFragmentMessageTextView"
+            android:id="@+id/viewMessagesMessageTextView"
+            android:padding="5dp"
+            android:layout_below="@+id/viewMessagesNameTextView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="@android:color/black" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_trash"
+            android:id="@+id/viewMessagesActivityTrashIconImageView"
+            android:padding="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/viewMessagesFragmentTimestampTextView"
+            android:id="@+id/viewMessagesTimestampTextView"
+            android:layout_below="@+id/viewMessagesMessageTextView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:padding="5dp"
+            android:textColor="#d1ae23" />
+    </RelativeLayout>
+</LinearLayout>
