@@ -48,7 +48,7 @@ public class ContactAdapter extends ArrayAdapter<User> {
         final User contact = mData.get(position);
 
         // Set contact profile picture
-        ImageView profilePictureImageView = (ImageView)convertView.findViewById(R.id.conversationsActivityProfileImageView);
+        ImageView profilePictureImageView = (ImageView)convertView.findViewById(R.id.contactsActivityProfileImageView);
         String base64ProfilePicture = contact.getBase64Picture();
         if(base64ProfilePicture != null && !base64ProfilePicture.isEmpty()){
             byte[] decodedImageByteArray = Base64.decode(base64ProfilePicture, Base64.DEFAULT);
@@ -57,14 +57,14 @@ public class ContactAdapter extends ArrayAdapter<User> {
         }
 
         // Set contact first and last name
-        TextView fullNameTextview = (TextView)convertView.findViewById(R.id.conversationsActivityFullNameTextView);
+        TextView fullNameTextview = (TextView)convertView.findViewById(R.id.contactsActivityFullNameTextView);
         String fullName = contact.getFullName();
         if(fullName != null && !fullName.isEmpty()){
             fullNameTextview.setText(fullName);
         }
 
         // Set phone icon click listener
-        ImageView phoneIconImageView = (ImageView)convertView.findViewById(R.id.conversationsActivityPhoneIconImageView);
+        ImageView phoneIconImageView = (ImageView)convertView.findViewById(R.id.contactsActivityPhoneIconImageView);
         phoneIconImageView.setOnClickListener(new View.OnClickListener() {
 
             final int REQUEST_CODE_ASK_PERMISSIONS = 100;

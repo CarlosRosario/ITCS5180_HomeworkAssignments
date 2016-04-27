@@ -333,6 +333,12 @@ public class MainActivity extends AppCompatActivity implements LoginFragment.OnF
     @Override
     public void navigateToConversationsFragment() {
 
+        // Enable the navigation drawer
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(CONVERSATIONFRAGMENTTAG);
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+
         // User has successfully logged in, lets try to update the navigation drawer profile image + user name
         // First, lets get the email of the currently logged in user.
         String currentlyLoggedInUserEmail = firebase.getAuth().getProviderData().get("email").toString();

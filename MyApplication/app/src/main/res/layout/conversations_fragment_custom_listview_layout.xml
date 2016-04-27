@@ -3,11 +3,12 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <ImageView
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:src="@drawable/dummy"
-        android:id="@+id/contactsActivityProfileImageView"
+        android:id="@+id/conversationsActivityProfileImageView"
         android:layout_weight=".1"
         />
 
@@ -17,7 +18,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"
-        android:id="@+id/contactsActivityFullNameTextView"
+        android:id="@+id/conversationsActivityFullNameTextView"
         android:layout_marginTop="10dp"
         android:paddingLeft="3dp"
         android:text="First Name Last Name"
@@ -27,9 +28,10 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginTop="10dp"
-        android:id="@+id/contactsActivityPhoneIconImageView"
+        android:id="@+id/conversationsActivityPhoneIconImageView"
         android:layout_weight=".1"
         android:src="@drawable/phoneicon"
         />
+
 
 </LinearLayout>
