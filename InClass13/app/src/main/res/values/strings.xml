@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">InClass13</string>
+    <string name="title_activity_maps">Map</string>
+
+    <!-- SPINNER ITEMS -->
+    <string-array name="spinner_items">
+        <item>airport</item>
+        <item>atm</item>
+        <item>bank</item>
+        <item>cafe</item>
+        <item>parking</item>
+        <item>food</item>
+        <item>school</item>
+    </string-array>
+
+    <string name="spinner_button">Go</string>
+</resources>
